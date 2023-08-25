@@ -1,0 +1,64 @@
+#include <stdio.h>
+void addMatrix(int n, int A[][n], int B[][n], int C[][n]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] + B[i][j];
+        }
+    }
+}
+
+// Function to subtract two matrices
+void subtractMatrix(int n, int A[][n], int B[][n], int C[][n]) {
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            C[i][j] = A[i][j] - B[i][j];
+        }
+    }
+}
+
+// Function to perform Strassen's matrix multiplication
+void strassen(int n, int A[][n], int B[][n], int C[][n]) {
+    // Base case: If matrices are 1x1, perform simple multiplication
+    if (n == 1) {
+        C[0][0] = A[0][0] * B[0][0];
+        return;
+    }
+ int newSize = n / 2;
+
+    int A11[newSize][newSize], A12[newSize][newSize], A21[newSize][newSize], A22[newSize][newSize];
+    int B11[newSize][newSize], B12[newSize][newSize], B21[newSize][newSize], B22[newSize][newSize];
+    int P1[newSize][newSize], P2[newSize][newSize], P3[newSize][newSize], P4[newSize][newSize];
+    int P5[newSize][newSize], P6[newSize][newSize], P7[newSize][newSize];
+
+    // Divide matrices A and B into submatrices
+    // ...
+
+    // Calculate the seven products
+    // ...
+
+    // Compute the resulting submatrices of the product matrix C
+    // ...
+
+    // Recombine the resulting submatrices into the final product matrix C
+    // ...
+}
+int main() {
+    int n = 2; // Matrix dimension (should be a power of 2)
+    int A[n][n] = {{1, 2}, {3, 4}};
+    int B[n][n] = {{5, 6}, {7, 8}};
+    int C[n][n];
+
+    strassen(n, A, B, C);
+
+    printf("Resultant matrix C:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", C[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+
