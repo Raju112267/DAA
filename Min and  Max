@@ -1,0 +1,38 @@
+#include <stdio.h>
+
+struct MinMax {
+    int min;
+    int max;
+};
+
+struct MinMax findMinMax(int arr[], int left, int right) {
+    struct MinMax mm, mmLeft, mmRight, mmFinal;
+
+    // Base case: When the list contains only one element
+    if (left == right) {
+        mm.min = mm.max = arr[left];
+        return mm;
+    }
+
+    // Divide the list into two halves
+    int middle = (left + right) / 2;
+    mmLeft = findMinMax(arr, left, middle);
+    mmRight = findMinMax(arr, middle + 1, right);
+
+    // Compare minimums and maximums from the left and right halves
+    mmFinal.min = (mmLeft.min < mmRight.min) ? mmLeft.min : mmRight.min;
+    mmFinal.max = (mmLeft.max > mmRight.max) ? mmLeft.max : mmRight.max;
+    return mmFinal;
+}
+
+int main() {
+    int arr[] = {3, 1, 7, 9, 2, 6, 4, 5};
+    int arrSize = sizeof(arr) / sizeof(arr[0]);
+
+    struct MinMax result = findMinMax(arr, 0, arrSize - 1);
+
+    printf("Minimum value: %d\n", result.min);
+    printf("Maximum value: %d\n", result.max);
+
+    return 0;
+}
